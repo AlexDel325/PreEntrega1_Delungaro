@@ -8,67 +8,78 @@ class Usuario {
 };
 
 // variables y arrays
-let cantidad = parseInt(prompt('A cuantas personas quiere ingresar? "puede hasta un maximo de 5 personas"')),
-    vueltas = 0,
-    promedio = 0,
-    total = 0,
-    listaUsuarios = [];
+let listaUsuarios = [],
+    nombre = 1,
+    edad = parseInt(1),
+    profecion = 1;
+
+// elementos llamados
+let botonMenu = document.getElementById("crearUs"),
+    Form = document.getElementById("formulario"),
+    cerrar = document.getElementById("cerrar"),
+    confirmar = document.getElementById("confirmar"),
+    tabla = document.getElementById("elementos"),
+    list = document.getElementById("lista");
+
+// eventos
+let miFormulario = document.getElementById("myForm");
+miFormulario.addEventListener("submit", crearUsuario);
 
 //funciones
-const crearUsuario = () => {
-    let nombre = prompt("¿Como se llama?");
-    let edad = parseInt(prompt("¿Cuantos años tiene?"));
-    let profecion = "";
+function crearUsuario(e) {
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombre").value;
+    let edad = parseInt(document.getElementById("edad").value);
+    let profecion = document.getElementById("equipo").value;
+
+    const listItem = document.createElement('li');
+    listItem.textContent = `añadiste a usuario ${document.getElementById("nombre").value} a la lista`;
+
 
     if (edad < 18) {
-        profecion = "Estudiante";
-    } else {
-        profecion = prompt("¿A que se dedica?");
-    }
+        alert("el usuario debe ser mayor de edad");
 
-    let usuarioNuevo = new Usuario(nombre, edad, profecion);
-    listaUsuarios.push(usuarioNuevo);
+    } else if (edad >= 18) {
+        list.appendChild(listItem);
+
+        let usuarioNuevo = new Usuario(nombre, edad, profecion);
+        listaUsuarios.push(usuarioNuevo);
+
+        localStorage.setItem("Usuarios", JSON.stringify(listaUsuarios));
+
+        let usuarioT = document.createElement("tr");
+        let elementoN = document.createElement("td");
+        let elementoE = document.createElement("td");
+        let elementoP = document.createElement("td");
+
+        elementoN.textContent = document.getElementById("nombre").value;
+        elementoE.textContent = document.getElementById("edad").value;
+        elementoP.textContent = document.getElementById("equipo").value;
+
+        tabla.appendChild(usuarioT);
+        usuarioT.appendChild(elementoN);
+        usuarioT.appendChild(elementoE);
+        usuarioT.appendChild(elementoP);
+
+        miFormulario.reset();
+    }
 
     return listaUsuarios;
+
+};
+
+
+//manejo de DOM
+
+confirmar.onclick = () => {
+    Form.style.display = "none";
 }
 
-//bucles
-while (cantidad >= 6 || cantidad <= 0 || isNaN(cantidad)) {
-    alert('Por favor introduzca un numero igual o menor a 5');
-    cantidad = parseInt(prompt('A cuantas personas quiere ingresar? "puede hasta un maximo de 5 personas"'));
-}
+botonMenu.onclick = () => {
+    Form.style.display = "block";
+};
 
-for (vueltas; vueltas != cantidad; vueltas++) {
-    crearUsuario();
-}
-
-// calcula el promedio de edad de todos los "Usuario"
-listaUsuarios.forEach((Usuario) => {
-    total = Usuario.edad + promedio;
-    promedio = total;
-})
-
-//ordenamiento de array en orden alfabetico
-listaUsuarios.sort((a, b) => {
-    if (a.nombre > b.nombre) {
-        return 1;
-    }
-    if (a.nombre < b.nombre) {
-        return -1;
-    }
-    return 0;
-})
-
-//filtrado 
-const filtroMayores = listaUsuarios.filter(Usuario => (Usuario.edad >= 18));
-const filtroMenores = listaUsuarios.filter(Usuario => (Usuario.edad < 18));
-
-// salidas por consola
-console.log(`Nombre Edad Profeción`);
-listaUsuarios.forEach((Usuario) => {
-    console.log(`${Usuario.nombre} ${Usuario.edad} ${Usuario.profecion}`);
-})
-
-console.log(`el promedio de edad es de ${promedio / listaUsuarios.length}`);
-console.log(`Cantidad de niños: ${filtroMenores.length}`);
-console.log(`Cantidad de adultos: ${filtroMayores.length}`);
+cerrar.onclick = () => {
+    Form.style.display = "none";
+};

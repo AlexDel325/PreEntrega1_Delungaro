@@ -5,16 +5,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
 
-    <title>Delungaro-1Pre_entrega</title>
+    <title>Delungaro-3Pre_entrega</title>
 </head>
 
 <body>
-    <section>
-        <h1>los resultados se muestran por consola</h1>
-    </section>
+    <header>
+        <h1>Pre entrega numero 3</h1>
+    </header>
+    <main>
+        <section>
+            <div class="tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Equipo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="elementos">
+                     
+                    </tbody>
+                </table>
+            </div>
+            <button class="crear" id="crearUs">Crear Usuarios</button>
+        </section>
+        <section class="formulario" id="formulario">
+            <div class="popup">
+                <button class="cerrar" id="cerrar">Cerrar</button>
+                <h2>Cargar Usuario</h2>
+                <div class="form">
+                    <form id="myForm">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Juan Perez">
+
+                        <label for="edad">Edad:</label>
+                        <input type="text" id="edad" name="edad" placeholder="22">
+
+                        <label for="equipo">A que equipo pertenece:</label>
+                        <select id="equipo" name="equipo">
+                            <option value="Desarrollo">Desarrollo</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Diseño">Diseño</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <input type="submit" class="add" id="add" value="agregar">
+                    </form>
+
+                    <ul class="lista" id="lista">
+                        <li>Agregaste a la lista:</li>
+                    </ul>
+                </div>
+                <button class="confirmar" id="confirmar">confirmar</button>
+            </div>
+        </section>
+    </main>
 
     <!--  vinculacion con el documento Js  -->
     <script src="js/main.js"></script>
 </body>
+
 </html>

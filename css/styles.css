@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+h1 {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+h2,
+div {
+    margin-left: 40px;
+}
+
+p {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.tabla {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 60vh;
+    background: #f5f4f4;
+    margin: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+
+
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+td,
+th {
+    border-bottom: 1px solid #b9b8b8;
+    border-left: 1px solid #b9b8b8;
+    border-right: 1px solid #b9b8b8;
+}
+
+.formulario {
+    display: none;
+    background: #21212166;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.popup {
+    margin: 3rem;
+    padding: .5rem;
+    background: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 2rem;
+
+}
+
+.lista {
+    width: 30%;
+    background-color: #FFFFFF;
+}
+
+form {
+    width: 50%;
+    padding: 1rem;
+}
+
+
+input[type=text],
+select {
+    width: 100%;
+    border-radius: 2px;
+    border: 0;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #f5f4f4;
+    margin-bottom: 2.25em;
+}
+
+.cerrar {
+    width: 80px;
+    margin-left: auto;
+}
+
+.confirmar {
+    width: 200px;
+    margin-left: auto;
+}
+
+.add {
+    justify-content: flex-end;
+    width: 200px;
+    margin-top: 1.25rem;
+}
+
+.crear {
+    margin: 20px;
+    margin-top: 5px;
+}
+
+button, .add {
+    border: 1px solid white;
+    padding: 15px;
+    color: white;
+    background-color: #2e48f3;
+    border-radius: 5px;
+
+}
+
+button:hover, .add:hover {
+    border: none;
+    padding: 15px;
+    color: black;
+    background-color: #ebeeff;
+    border: 1px solid black;
+}
