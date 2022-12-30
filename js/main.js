@@ -11,7 +11,7 @@ class Usuario {
 let displayMenu = document.getElementById("display-menu"),
     closeMenu = document.getElementById("close-menu"),
     confirmar = document.getElementById("confirmar"),
-    Form = document.getElementById("formulario"),
+    form = document.getElementById("formulario"),
     tabla = document.getElementById("componentes"),
     list = document.getElementById("lista"),
     miFormulario = document.getElementById("myForm");
@@ -27,7 +27,7 @@ const crearUsuario = () => {
         profecion = document.getElementById("equipo").value;
 
     if (edad < 18) {
-        console.log('el usuario debe ser mayor de edad')
+        console.log('el usuario debe ser mayor de edad');
 
     } else if (edad >= 18) {
 
@@ -53,8 +53,9 @@ const crearlista = () => {
 }
 
 const crearTabla = () => {
-
     listaUsuarios.forEach((Usuario) => {
+        todosLosUsuarios.push(Usuario);
+
         let row = document.createElement('tr'),
             nomreCell = document.createElement('td'),
             edadCell = document.createElement('td'),
@@ -68,28 +69,31 @@ const crearTabla = () => {
         row.appendChild(nomreCell);
         row.appendChild(edadCell);
         row.appendChild(profecionCell);
-        todosLosUsuarios.push(Usuario);
     });
 
 }
 
 const imprimirStorage = () => {
-    todosLosUsuarios = JSON.parse(localStorage.getItem('todosLosUsuarios'));
-    todosLosUsuarios.forEach((Usuario) => {
-        let row = document.createElement('tr');
-        nomreCell = document.createElement('td');
-        edadCell = document.createElement('td');
-        profecionCell = document.createElement('td');
+    if (todosLosUsuarios == null) {
+        todosLosUsuarios = [];
+    } else if (todosLosUsuarios.length == 1) {
+        todosLosUsuarios = JSON.parse(localStorage.getItem('todosLosUsuarios'));
+        todosLosUsuarios.forEach((Usuario) => {
+            let row = document.createElement('tr'),
+                nomreCell = document.createElement('td'),
+                edadCell = document.createElement('td'),
+                profecionCell = document.createElement('td');
 
-        nomreCell.textContent = Usuario.nombre;
-        edadCell.textContent = Usuario.edad;
-        profecionCell.textContent = Usuario.profecion;
+            nomreCell.textContent = Usuario.nombre;
+            edadCell.textContent = Usuario.edad;
+            profecionCell.textContent = Usuario.profecion;
 
-        tabla.appendChild(row);
-        row.appendChild(nomreCell);
-        row.appendChild(edadCell);
-        row.appendChild(profecionCell);
-    });
+            tabla.appendChild(row);
+            row.appendChild(nomreCell);
+            row.appendChild(edadCell);
+            row.appendChild(profecionCell);
+        });
+    }
 }
 
 const guardarUsuario = (e) => {
@@ -112,15 +116,15 @@ miFormulario.addEventListener("submit", guardarUsuario);
 imprimirStorage();
 
 displayMenu.onclick = () => {
-    Form.style.display = "block";
+    form.style.display = "block";
 }
 
 closeMenu.onclick = () => {
-    Form.style.display = "none";
+    form.style.display = "none";
 }
 
 confirmar.onclick = () => {
-    Form.style.display = "none";
+    form.style.display = "none";
     crearTabla();
     guardarStorage();
 }
