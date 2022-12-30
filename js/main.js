@@ -16,6 +16,7 @@ let displayMenu = document.getElementById("display-menu"),
     list = document.getElementById("lista"),
     miFormulario = document.getElementById("myForm");
 
+
 // arrays
 let listaUsuarios = [],
     todosLosUsuarios = [];
@@ -70,7 +71,6 @@ const crearTabla = () => {
         row.appendChild(edadCell);
         row.appendChild(profecionCell);
     });
-
 }
 
 const imprimirStorage = () => {
@@ -107,6 +107,17 @@ const guardarStorage = () => {
 
 //eventos
 miFormulario.addEventListener("submit", guardarUsuario);
+
+//ordenamiento de la tabla en orden alfabetico
+todosLosUsuarios.sort((a, b) => {
+    if (a.nombre > b.nombre) {
+        return 1;
+    }
+    if (a.nombre < b.nombre) {
+        return -1;
+    }
+    return 0;
+})
 
 //manejo de DOM
 if (JSON.parse(localStorage.getItem('todosLosUsuarios') != null)) {
