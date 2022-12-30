@@ -7,19 +7,18 @@ class Usuario {
     }
 };
 
-// variables y arrays
-let listaUsuarios = [],
-    todosLosUsuarios = [];
-
-// elementos llamados
+// variables
 let displayMenu = document.getElementById("display-menu"),
     closeMenu = document.getElementById("close-menu"),
     confirmar = document.getElementById("confirmar"),
     Form = document.getElementById("formulario"),
     tabla = document.getElementById("componentes"),
-    list = document.getElementById("lista");
+    list = document.getElementById("lista"),
+    miFormulario = document.getElementById("myForm");
 
-let = miFormulario = document.getElementById("myForm");
+// arrays
+let listaUsuarios = [],
+    todosLosUsuarios = [];
 
 //funciones
 const crearUsuario = () => {
@@ -53,7 +52,7 @@ const crearlista = () => {
     list.appendChild(listItem);
 }
 
-const ImprimirTabla = () => {
+const crearTabla = () => {
 
     listaUsuarios.forEach((Usuario) => {
         let row = document.createElement('tr');
@@ -69,10 +68,28 @@ const ImprimirTabla = () => {
         row.appendChild(nomreCell);
         row.appendChild(edadCell);
         row.appendChild(profecionCell);
-
         todosLosUsuarios.push(Usuario);
     });
 
+}
+
+const imprimirStorage = () => {
+    todosLosUsuarios = JSON.parse(localStorage.getItem('todosLosUsuarios'));
+    todosLosUsuarios.forEach((Usuario) => {
+        let row = document.createElement('tr');
+        nomreCell = document.createElement('td');
+        edadCell = document.createElement('td');
+        profecionCell = document.createElement('td');
+
+        nomreCell.textContent = Usuario.nombre;
+        edadCell.textContent = Usuario.edad;
+        profecionCell.textContent = Usuario.profecion;
+
+        tabla.appendChild(row);
+        row.appendChild(nomreCell);
+        row.appendChild(edadCell);
+        row.appendChild(profecionCell);
+    });
 }
 
 const guardarUsuario = (e) => {
@@ -88,9 +105,12 @@ const guardarStorage = () => {
     listaUsuarios = [];
 }
 
+//eventos
 miFormulario.addEventListener("submit", guardarUsuario);
 
 //manejo de DOM
+imprimirStorage();
+
 displayMenu.onclick = () => {
     Form.style.display = "block";
 }
@@ -101,6 +121,6 @@ closeMenu.onclick = () => {
 
 confirmar.onclick = () => {
     Form.style.display = "none";
-    ImprimirTabla();
+    crearTabla();
     guardarStorage();
 }
