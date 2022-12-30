@@ -22,9 +22,9 @@ let listaUsuarios = [],
 
 //funciones
 const crearUsuario = () => {
-    let nombre = document.getElementById("nombre").value;
-    let edad = parseInt(document.getElementById("edad").value);
-    let profecion = document.getElementById("equipo").value;
+    let nombre = document.getElementById("nombre").value,
+        edad = parseInt(document.getElementById("edad").value),
+        profecion = document.getElementById("equipo").value;
 
     if (edad < 18) {
         console.log('el usuario debe ser mayor de edad')
@@ -40,8 +40,8 @@ const crearUsuario = () => {
 
 const crearlista = () => {
     const listItem = document.createElement('li');
-    let nombre = document.getElementById("nombre").value;
-    let edad = parseInt(document.getElementById("edad").value);
+    let nombre = document.getElementById("nombre").value,
+        edad = parseInt(document.getElementById("edad").value);
 
     if (edad < 18 || nombre == '') {
         listItem.textContent = `ERROR al cargar el usuario`;
@@ -55,10 +55,10 @@ const crearlista = () => {
 const crearTabla = () => {
 
     listaUsuarios.forEach((Usuario) => {
-        let row = document.createElement('tr');
-        nomreCell = document.createElement('td');
-        edadCell = document.createElement('td');
-        profecionCell = document.createElement('td');
+        let row = document.createElement('tr'),
+            nomreCell = document.createElement('td'),
+            edadCell = document.createElement('td'),
+            profecionCell = document.createElement('td');
 
         nomreCell.textContent = Usuario.nombre;
         edadCell.textContent = Usuario.edad;
