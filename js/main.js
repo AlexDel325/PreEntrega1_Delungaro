@@ -9,77 +9,98 @@ class Usuario {
 
 // variables y arrays
 let listaUsuarios = [],
-    nombre = 1,
-    edad = parseInt(1),
-    profecion = 1;
+    todosLosUsuarios = [];
 
 // elementos llamados
-let botonMenu = document.getElementById("crearUs"),
-    Form = document.getElementById("formulario"),
-    cerrar = document.getElementById("cerrar"),
+let displayMenu = document.getElementById("display-menu"),
+    closeMenu = document.getElementById("close-menu"),
     confirmar = document.getElementById("confirmar"),
-    tabla = document.getElementById("elementos"),
+    Form = document.getElementById("formulario"),
+    tabla = document.getElementById("componentes"),
     list = document.getElementById("lista");
 
-// eventos
-let miFormulario = document.getElementById("myForm");
-miFormulario.addEventListener("submit", crearUsuario);
+let = miFormulario = document.getElementById("myForm");
 
 //funciones
-function crearUsuario(e) {
-    e.preventDefault();
-
+const crearUsuario = () => {
     let nombre = document.getElementById("nombre").value;
     let edad = parseInt(document.getElementById("edad").value);
     let profecion = document.getElementById("equipo").value;
 
-    const listItem = document.createElement('li');
-    listItem.textContent = `añadiste a usuario ${document.getElementById("nombre").value} a la lista`;
-
-
     if (edad < 18) {
-        alert("el usuario debe ser mayor de edad");
+        console.log('el usuario debe ser mayor de edad')
 
     } else if (edad >= 18) {
-        list.appendChild(listItem);
 
         let usuarioNuevo = new Usuario(nombre, edad, profecion);
         listaUsuarios.push(usuarioNuevo);
-
-        localStorage.setItem("Usuarios", JSON.stringify(listaUsuarios));
-
-        let usuarioT = document.createElement("tr");
-        let elementoN = document.createElement("td");
-        let elementoE = document.createElement("td");
-        let elementoP = document.createElement("td");
-
-        elementoN.textContent = document.getElementById("nombre").value;
-        elementoE.textContent = document.getElementById("edad").value;
-        elementoP.textContent = document.getElementById("equipo").value;
-
-        tabla.appendChild(usuarioT);
-        usuarioT.appendChild(elementoN);
-        usuarioT.appendChild(elementoE);
-        usuarioT.appendChild(elementoP);
-
-        miFormulario.reset();
     }
 
     return listaUsuarios;
+}
 
-};
+const crearlista = () => {
+    const listItem = document.createElement('li');
+    let nombre = document.getElementById("nombre").value;
+    let edad = parseInt(document.getElementById("edad").value);
 
+    if (edad < 18 || nombre == '') {
+        listItem.textContent = `ERROR al cargar el usuario`;
+    } else if (edad >= 18) {
+        listItem.textContent = `añadiste a usuario ${nombre} a la lista`;
+    }
+
+    list.appendChild(listItem);
+}
+
+const ImprimirTabla = () => {
+
+    listaUsuarios.forEach((Usuario) => {
+        let row = document.createElement('tr');
+        nomreCell = document.createElement('td');
+        edadCell = document.createElement('td');
+        profecionCell = document.createElement('td');
+
+        nomreCell.textContent = Usuario.nombre;
+        edadCell.textContent = Usuario.edad;
+        profecionCell.textContent = Usuario.profecion;
+
+        tabla.appendChild(row);
+        row.appendChild(nomreCell);
+        row.appendChild(edadCell);
+        row.appendChild(profecionCell);
+
+        todosLosUsuarios.push(Usuario);
+    });
+
+}
+
+const guardarUsuario = (e) => {
+    e.preventDefault();
+    crearUsuario();
+    crearlista();
+    miFormulario.reset();
+}
+
+const guardarStorage = () => {
+    localStorage.setItem("UsuariosRecientes", JSON.stringify(listaUsuarios));
+    localStorage.setItem("todosLosUsuarios", JSON.stringify(todosLosUsuarios));
+    listaUsuarios = [];
+}
+
+miFormulario.addEventListener("submit", guardarUsuario);
 
 //manejo de DOM
+displayMenu.onclick = () => {
+    Form.style.display = "block";
+}
 
-confirmar.onclick = () => {
+closeMenu.onclick = () => {
     Form.style.display = "none";
 }
 
-botonMenu.onclick = () => {
-    Form.style.display = "block";
-};
-
-cerrar.onclick = () => {
+confirmar.onclick = () => {
     Form.style.display = "none";
-};
+    ImprimirTabla();
+    guardarStorage();
+}
