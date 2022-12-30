@@ -74,26 +74,22 @@ const crearTabla = () => {
 }
 
 const imprimirStorage = () => {
-    if (todosLosUsuarios == null) {
-        todosLosUsuarios = [];
-    } else if (todosLosUsuarios.length == 1) {
-        todosLosUsuarios = JSON.parse(localStorage.getItem('todosLosUsuarios'));
-        todosLosUsuarios.forEach((Usuario) => {
-            let row = document.createElement('tr'),
-                nomreCell = document.createElement('td'),
-                edadCell = document.createElement('td'),
-                profecionCell = document.createElement('td');
+    todosLosUsuarios = JSON.parse(localStorage.getItem('todosLosUsuarios'));
+    todosLosUsuarios.forEach((Usuario) => {
+        let row = document.createElement('tr'),
+            nomreCell = document.createElement('td'),
+            edadCell = document.createElement('td'),
+            profecionCell = document.createElement('td');
 
-            nomreCell.textContent = Usuario.nombre;
-            edadCell.textContent = Usuario.edad;
-            profecionCell.textContent = Usuario.profecion;
+        nomreCell.textContent = Usuario.nombre;
+        edadCell.textContent = Usuario.edad;
+        profecionCell.textContent = Usuario.profecion;
 
-            tabla.appendChild(row);
-            row.appendChild(nomreCell);
-            row.appendChild(edadCell);
-            row.appendChild(profecionCell);
-        });
-    }
+        tabla.appendChild(row);
+        row.appendChild(nomreCell);
+        row.appendChild(edadCell);
+        row.appendChild(profecionCell);
+    });
 }
 
 const guardarUsuario = (e) => {
@@ -113,7 +109,9 @@ const guardarStorage = () => {
 miFormulario.addEventListener("submit", guardarUsuario);
 
 //manejo de DOM
-imprimirStorage();
+if (JSON.parse(localStorage.getItem('todosLosUsuarios') != null)) {
+    imprimirStorage();
+}
 
 displayMenu.onclick = () => {
     form.style.display = "block";
