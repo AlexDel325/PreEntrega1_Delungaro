@@ -5,20 +5,20 @@
     font-family: sans-serif;
 }
 
-h1 {
+img {
+    max-width: 100%;
+}
+
+.h1 {
     margin-left: 20px;
     margin-top: 10px;
 }
 
-h2,
-div {
+.h2 {
     margin-left: 40px;
 }
 
-p {
-    display: inline-block;
-    margin-top: 20px;
-}
+
 
 .tabla {
     display: flex;
@@ -28,9 +28,7 @@ p {
     background: #f5f4f4;
     margin: 20px;
     border-radius: 5px;
-    border: 1px solid black;
-
-
+    overflow-y: auto;
 }
 
 table {
@@ -38,11 +36,16 @@ table {
     text-align: center;
 }
 
-td,
 th {
+    padding: .5rem;
     border-bottom: 1px solid #b9b8b8;
-    border-left: 1px solid #b9b8b8;
-    border-right: 1px solid #b9b8b8;
+    background-color: #2e48f3;
+    color: white;
+}
+
+.componentes td {
+    border: 1px solid #b9b8b8;
+    padding: .5rem;
 }
 
 .formulario {
@@ -75,6 +78,15 @@ th {
 .lista {
     width: 30%;
     background-color: #FFFFFF;
+    list-style: none;
+    width: 50%;
+}
+
+.list-title {
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    margin-bottom: 1rem;
 }
 
 form {
@@ -84,7 +96,8 @@ form {
 
 
 input[type=text],
-select {
+input[type=email],
+.equipo {
     width: 100%;
     border-radius: 2px;
     border: 0;
@@ -112,11 +125,12 @@ select {
 }
 
 .crear {
-    margin: 20px;
+    margin-left: 20px;
     margin-top: 5px;
 }
 
-button, .add {
+.btn,
+.add {
     border: 1px solid white;
     padding: 15px;
     color: white;
@@ -125,10 +139,50 @@ button, .add {
 
 }
 
-button:hover, .add:hover {
+.btn:hover,
+.add:hover,
+.borrar {
     border: none;
     padding: 15px;
     color: black;
     background-color: #ebeeff;
     border: 1px solid black;
+    border: 1px solid white;
+}
+
+.borrar:hover {
+    color: white;
+    background-color: #f32e2e;
+}
+
+.rol {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+    margin-top: 2rem;
+}
+
+.caja {
+    background: #f5f4f4;
+    border-radius: 5px;
+    width: 15%;
+    padding: 1rem;
+}
+
+.cantidad,
+.roles {
+    text-align: center;
+}
+
+.roles {
+    font-size: 1em;
+}
+
+.cantidad {
+    font-size: 3rem;
+}
+
+.pokemon:hover {
+    background-color: #43945e;
+    color: white;
 }

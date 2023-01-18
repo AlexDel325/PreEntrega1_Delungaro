@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
 
-    <title>Delungaro-3Pre_entrega</title>
+    <title>Delungaro-Final</title>
 </head>
 
 <body>
     <header>
-        <h1>Pre entrega numero 3</h1>
+        <h1 class="h1">Lista de Usuarios</h1>
     </header>
     <main>
         <section>
@@ -21,52 +21,62 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
+                            <th>Apellido</th>
                             <th>Edad</th>
-                            <th>Equipo</th>
+                            <th>Rol</th>
+                            <th>Correo</th>
+                            <th>Mascota(pokémon)</th>
                         </tr>
                     </thead>
-                    <tbody id="componentes">
+                    <tbody id="componentes" class="componentes">
                     </tbody>
                 </table>
             </div>
-
-            <button class="crear" id="display-menu">Crear Usuarios</button>
-
+            <button class="crear btn" id="display-menu">Crear Usuarios</button>
+            <button class="btn borrar" id="delete-all">borrar todo</button>
         </section>
         <section class="formulario" id="formulario">
             <div class="popup">
-                <button class="cerrar" id="close-menu">Cerrar</button>
-                <h2>Cargar Usuario</h2>
+                <button class="cerrar btn" id="close-menu">Cerrar</button>
+                <h2 class="h2">Cargar Usuario</h2>
                 <div class="form">
                     <form id="myForm">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Juan Perez">
+                        <input type="text" id="nombre" name="nombre" placeholder="Juan">
+
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Perez">
 
                         <label for="edad">Edad:</label>
                         <input type="text" id="edad" name="edad" placeholder="22">
 
-                        <label for="equipo">A que equipo pertenece:</label>
-                        <select id="equipo" name="equipo">
-                            <option value="Desarrollo">Desarrollo</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Diseño">Diseño</option>
-                            <option value="Mantenimiento">Mantenimiento</option>
-                            <option value="Otro">Otro</option>
+                        <label for="equipo">rol:</label>
+                        <select id="equipo" name="equipo" class="equipo">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Editor">Editor</option>
+                            <option value="Colaborador">Colaborador</option>
+                            <option value="Suscriptor">Suscriptor</option>
                         </select>
+
+                        <label for="correo">Correo:</label>
+                        <input type="email" id="correo" name="correo" placeholder="perez@mail.com">
+
                         <input type="submit" class="add" id="add" value="agregar">
                     </form>
 
                     <ul class="lista" id="lista">
-                        <li>Agregaste a la lista:</li>
+                        <li class="list-title">Agregaste a la lista:</li>
                     </ul>
                 </div>
-                <button class="confirmar" id="confirmar">confirmar</button>
+                <button class="confirmar btn" id="confirmar">confirmar</button>
             </div>
         </section>
     </main>
 
     <!--  vinculacion con el documento Js  -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
 </html>
+
